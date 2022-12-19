@@ -1,44 +1,37 @@
 #include <stdio.h>
-#include <string.h>
+
 void main()
 {
-int i,j,keylen,msglen;
-char input[100], key[30],temp[30],quot[100],rem[30],key1[30];
-printf("Enter Frame: ");
-gets(input);
-printf("Enter Generator: ");
-gets(key);
-keylen=strlen(key);
-sglen=strlen(input);
-strcpy(key1,key);
-for (i=0;i<keylen-1;i++)
-{
-input[msglen+i]='0';
-}
-for (i=0;i<keylen;i++) temp[i]=input[i];
-for (i=0;i<msglen;i++)
-{
-quot[i]=temp[0];
-if(quot[i]=='0')
-for (j=0;j<keylen;j++) key[j]='0';
-Computer Network (3150710)
-else
-for (j=0;j<keylen;j++) key[j]=key1[j];
-for (j=keylen-1;j>0;j--)
-{
-200090107088
-Computer Networks(3150710)
-if(temp[j]==key[j])
-rem[j-1]='0';
-else
-}
-rem[j-1]='1';
-rem[keylen-1]=input[i+keylen];
-strcpy(temp,rem);
-}
-strcpy(rem,temp); printf("\nQuotient is ");
-for (i=0;i<msglen;i++)
-printf("%c",quot[i]); printf("\nRemainder is ");
-for (i=0;i<keylen-1;i++)
-printf("%c",rem[i]);
+    int num, r, flag = 0, p;
+    printf("Enter String which contain 0 and 1 : ");
+    scanf("%d", &num);
+    printf("\nFor even parity enter 1 and for odd parity enter O : ");
+    scanf("%d", &p);
+
+    while (num != 0)
+    {
+        r = num % 10;
+        if (r == 1)
+            flag += 1;
+        num = num / 10;
+    }
+    if (p == 1)
+    {
+        printf("*** You selected Even parity check ***");
+        if (flag % 2 == 0)
+            printf("\nParity is 0");
+        else
+            printf("\nParity is 1");
+    }
+    
+    else if (p == 0)
+    {
+        printf("*** You selected Odd parity check ***");
+        if (flag % 2 == 0)
+            printf("\nParity is 1");
+        else
+            printf("\nParity is 0");
+    }
+    else
+        printf("Invalid input");
 }

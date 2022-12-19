@@ -7,6 +7,7 @@ void main()
     int i, j, k, count = 1;
     printf("Enter size of a bit string:");
     scanf("%d", &n);
+    
     printf("Enter the bit string(0's &1's):");
     for (i = 0; i < n; i++)
     {

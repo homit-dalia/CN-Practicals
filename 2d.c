@@ -1,120 +1,78 @@
 #include <stdio.h>
-void main()
+
+int main()
 {
-    int a[100][100], m, n, p, rflag = 0, cflag = 0, i, j;
-    printf("Enter number of rows: ");
+    int m, n;
+    printf("Enter the (m*n) bits:\n");
+
+    printf("m: ");
     scanf("%d", &m);
-    printf("\nEnter number of columns: ");
+
+    printf("n: ");
     scanf("%d", &n);
-    printf("\nEnter elements: ");
-    for (i = 0; i < m; i++)
+
+
+    int s[100][100];
+    int count;
+    
+    for (int i = 0; i < m; i++)
     {
-        for (j = 0; j < n; j++)
+        printf("Enter frame %d: \n", i + 1);
+        for (int j = 0; j < n; j++)
         {
-            printf("\na[%d][%d]= ", i, j);
-            scanf("%d", &a[i][j]);
+            scanf("%d", &s[i][j]);
         }
     }
-    printf("\nData is as below :\n");
-    for (i = 0; i < m; i++)
+
+    printf("Before : \n");
+    for (int i = 0; i < m; i++)
     {
-        for (j = 0; j < n; j++)
+        for (int j = 0; j < n; j++)
         {
-            printf("%d ", a[i][j]);
+            printf("%d ", s[i][j]);
         }
         printf("\n");
     }
-    printf("\n1) Even Parity \n2) Odd Parity\nEnter your choice:");
-    scanf("%d", &p);
-    if (p == 1)
+
+    for (int j = 0; j < m; j++)
     {
-        for (i = 0; i < m; i++)
+        count = 0;
+        for (int i = 0; i < n; i++)
         {
-            rflag = 0;
-            for (j = 0; j < n; j++)
-            {
-                if (a[i][j] == 1)
-                {
-                        rflag++;
-                }
-            }
-            if (rflag % 2 == 0)
-            {
-            }
-            else
-            {
-            }
+            if (s[i][j] == 1)
+                count += 1;
         }
-        a[i][j] = 0;
-        a[i][j] = 1;
-        for (j = 0; j < (n + 1); j++)
-        {
-            cflag = 0;
-            for (i = 0; i < m; i++)
-            {
-                if (a[i][j] == 1)
-                {
-                    cflag++;
-                }
-            }
-            if (cflag % 2 == 0)
-            {
-                a[i][j] = 0;
-            }
-            else
-            {
-                a[i][j] = 1;
-            }
-        }
+        if (count % 2 == 0)
+            s[m][j] = 0;
+        else
+            s[m][j] = 1;
     }
-    else
+
+    for (int i = 0; i < m + 1; i++)
     {
-        for (i = 0; i < m; i++)
+        count = 0;
+        for (int j = 0; j < n; j++)
         {
-                rflag = 0;
-            for (j = 0; j < n; j++)
-            {
-                if (a[i][j] == 1)
-                {
-                    rflag++;
-                }
-            }
-            if (rflag % 2 == 0)
-            {
-                a[i][j] = 1;
-            }
-            else
-            {
-                a[i][j] = 0;
-            }
+            if (s[i][j] == 1)
+                count++;
         }
-        for (j = 0; j < (n + 1); j++)
-        {
-            cflag = 0;
-            for (i = 0; i < m; i++)
-                {
-                    if (a[i][j] == 1)
-                    {
-                        cflag++;
-                    }
-                }
-            if (cflag % 2 == 0)
-            {
-                a[i][j] = 1;
-            }
-            else
-            {
-                a[i][j] = 0;
-            }
-        }
+        // printf("i=%d\tj=%d",i,j);
+        if (count % 2 == 0)
+            s[i][n] = 0;
+        else
+            s[i][n] = 1;
     }
-    printf("\nData after parity is as below :\n");
-    for (i = 0; i < (m + 1); i++)
+
+    // printf("Outside row loop\n");
+    printf("After : \n");
+    for (int i = 0; i < m + 1; i++)
     {
-        for (j = 0; j < (n + 1); j++)
+        for (int j = 0; j < n + 1; j++)
         {
-            printf("%d ", a[i][j]);
+            printf("%d ", s[i][j]);
         }
         printf("\n");
     }
+
+    return 0;
 }
